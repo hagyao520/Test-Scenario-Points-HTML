@@ -30,6 +30,7 @@
 ### 使用说明
 #### 一、新增模块：  
 ![](https://testerhome.com/uploads/photo/2019/37e49dbf-9945-4f87-9a8b-54525ee66ec5.gif!large)
+![](https://testerhome.com/uploads/photo/2019/fb944cfb-e701-4f3c-9cf0-dbf965e8a7f1.gif!large)
  1. 点击新增模块按钮，输入模块跳转链接，一般对应产品原型的地址，例如：【 https://www.axure.com 】 
  3. 输入测试场景点，例如：【手机号丨获取验证码丨更换手机号丨登录】
  4. 输入图片地址，例如：【 https://alipic.lanhuapp.com/SketchCoverf0707de649e522dd7bc39b0d9df53f11 】
