@@ -18,6 +18,7 @@
   <script src="js/jquery.min.js"></script> 
   <script src="http://oss.sheetjs.com/js-xlsx/xlsx.full.min.js"></script>
   <script src="js/vue.min.js"></script> 
+  <script src="https://unpkg.com/xlsx/dist/xlsx.core.min.js"></script>
   <style id="style" type="text/css">
         *{
             margin: 0;
@@ -1342,7 +1343,7 @@ body .markdown-body
     <hr /> 
     <h2 id="_-1"> <a name="user-content-_1" href="#_1" class="headeranchor-link" aria-hidden="true"> <span class="headeranchor"> </span> </a> 功能模块： </h2> 
     <!-- 分界线 ------------------------------------------> 
-    <div class="md-modal md-effect-2" id="modal-2"> 
+    <div class="md-modal md-effect-1" id="modal-1"> 
      <div class="md-content"> 
       <h3>新增功能模块</h3> 
       <div> 
@@ -1358,15 +1359,49 @@ body .markdown-body
          <input id="Testpoints" placeholder="测试场景点" type="text" tabindex="3" required="" /> 
         </fieldset> 
         <fieldset> 
-         <textarea id="picturelist" placeholder="图片地址" tabindex="5" required=""></textarea> 
+         <textarea id="picturelist" placeholder="图片地址" tabindex="5" required="" style="font-size:12.2px;"></textarea> 
         </fieldset> 
        </form> 
        <p></p> 
        <fieldset> 
         <button onclick="Demo()">示例</button> 
-        <button onclick="empty()">清空</button> 
+        <!-- <button onclick="empty()">清空</button>  -->
         <button class="md-close">取消</button> 
         <button class="md-close1" onclick="added()">确认</button> 
+       </fieldset> 
+      </div> 
+     </div> 
+    </div> 
+    <div class="md-modal md-effect-2" id="modal-2"> 
+     <div class="md-content"> 
+      <h3>修改功能模块</h3> 
+      <div> 
+       <p>请填写以下信息：</p> 
+       <form id="contact" action="" method="post"> 
+        <fieldset> 
+         <input id="ModuleLink_Update" placeholder="模块链接" type="text" tabindex="1" required="" autofocus="" /> 
+        </fieldset> 
+        <fieldset> 
+         <input id="ModuleName_Update" placeholder="模块名称" type="text" tabindex="2" required="" style="width: 300px;float: right;"/> 
+         <select id = "myCourse1_Update" onchange = "setCourse_update();" style="width: 180px;height: 38px;float: left;"> 
+          <option value = "" selected>请选择...</option> 
+        </select> 
+        <fieldset style="display: none"> 
+         <input id="ModuleCode11_Update" placeholder="模块序号" value="0" type="text" tabindex="1" required="" autofocus=""/> 
+        </fieldset>
+        </fieldset> 
+        <fieldset> 
+         <input id="Testpoints_Update" placeholder="测试场景点" type="text" tabindex="3" required="" /> 
+        </fieldset> 
+        <fieldset> 
+         <textarea id="picturelist_Update" placeholder="图片地址" tabindex="5" required="" style="font-size:12.2px;"></textarea> 
+        </fieldset> 
+       </form>
+       <p></p> 
+       <fieldset> 
+        <button onclick="empty1()">清空</button> 
+        <button class="md-close">取消</button> 
+        <button class="md-close1" onclick="update()">确认</button> 
        </fieldset> 
       </div> 
      </div> 
@@ -1380,8 +1415,9 @@ body .markdown-body
         <select id = "myCourse1" onchange = "setCourse();"> 
          <option value = "" selected>全部</option> 
         </select> 
-        <fieldset> 
-         <input id="ModuleCode11" placeholder="模块序号" value="0" type="text" tabindex="1" required="" autofocus="" /> 
+        <fieldset style="display: none"> 
+         <input id="ModuleCode11" placeholder="模块序号" value="0" type="text" tabindex="1" required="" autofocus=""/> 
+         <!-- style="display: none"  -->
         </fieldset> 
        </form> 
        <p></p> 
@@ -1401,12 +1437,12 @@ body .markdown-body
        <select id = "myCourse" onchange = "setCourse();"> 
          <option value = "" selected>全部</option> 
        </select> 
-       <form id="contact" action="" method="post"> 
+       <form id="contact" action="" method="post""> 
         <fieldset> 
          <input id="ModuleName1" placeholder="模块名称" value="0" type="text" tabindex="1" required="" autofocus="" /> 
         </fieldset> 
        </form> 
-       <!-- <p></p>  -->
+       <p></p> 
        <fieldset> 
         <button class="md-close">取消</button> 
         <button class="md-close1" onclick="sendfile()">确认</button> 
@@ -1421,11 +1457,27 @@ body .markdown-body
        <p>请填写以下信息：</p> 
        <form id="contact" action="" method="post"> 
         <fieldset> 
-         <input id="ModuleCode22" placeholder="模块序号" type="text" tabindex="1" required="" autofocus="" /> 
+         <input id="ModuleLink_Save" placeholder="模块链接" type="text" tabindex="1" required="" autofocus="" /> 
         </fieldset> 
-       </form> 
+        <fieldset> 
+         <input id="ModuleName_Save" placeholder="模块名称" type="text" tabindex="2" required="" style="width: 300px;float: right;"/> 
+         <select id = "myCourse1_Save" onchange = "setCourse_Save();" style="width: 180px;height: 38px;float: left;"> 
+          <option value = "" selected>全部</option> 
+        </select> 
+        <fieldset style="display: none"> 
+         <input id="ModuleCode11_Save" placeholder="模块序号" value="0" type="text" tabindex="1" required="" autofocus=""/> 
+        </fieldset>
+        </fieldset> 
+        <fieldset> 
+         <input id="Testpoints_Save" placeholder="测试场景点" type="text" tabindex="3" required="" /> 
+        </fieldset> 
+        <fieldset> 
+         <textarea id="picturelist_Save" placeholder="图片地址" tabindex="5" required="" style="font-size:12.2px;"></textarea> 
+        </fieldset> 
+       </form>
        <p></p> 
        <fieldset> 
+        <button onclick="empty2()">清空</button> 
         <button class="md-close">取消</button> 
         <button class="md-close1" onclick="Preservation()">确认</button> 
        </fieldset> 
@@ -1438,16 +1490,21 @@ body .markdown-body
      <button class="md-trigger" data-modal="modal-4" style="position: fixed;bottom: 41%;right: 70px;font-size: 20px;cursor: pointer">读取模块</button> 
      <button class="md-trigger" data-modal="modal-5" style="position: fixed;bottom: 34%;right: 70px;font-size: 20px;cursor: pointer">保存模块</button> 
     </div> --> 
-    <div> 
-     <button class="md-trigger" data-modal="modal-2" style="position: fixed;bottom: 3%;right: 600px;font-size: 20px;cursor: pointer">新增模块</button> 
+    <div style="z-index: 99999;position: fixed;"> 
+     <button class="md-trigger" data-modal="modal-1" style="position: fixed;bottom: 3%;right: 770px;font-size: 20px;cursor: pointer">新增模块</button> 
+     <button class="md-trigger" data-modal="modal-2" style="position: fixed;bottom: 3%;right: 600px;font-size: 20px;cursor: pointer">修改模块</button> 
      <button class="md-trigger" data-modal="modal-3" style="position: fixed;bottom: 3%;right: 430px;font-size: 20px;cursor: pointer">删除模块</button> 
      <button class="md-trigger" data-modal="modal-4" style="position: fixed;bottom: 3%;right: 260px;font-size: 20px;cursor: pointer">读取模块</button> 
      <button class="md-trigger" data-modal="modal-5" style="position: fixed;bottom: 3%;right: 90px;font-size: 20px;cursor: pointer">保存模块</button> 
+    </div>
+    <div class='ModularList'>
     </div>
    </article> 
 <script>
    var i=0;
    var d=0; 
+   var u=0; 
+   var isAdd=0; 
    var ModuleLink;
    var ModuleName;
    var Testpoints;
@@ -1457,9 +1514,13 @@ body .markdown-body
    var TestDate;
    var ModuleArry1 = [];
    var ModuleArry = [];
+   var allArry =[];
+   var singleArry =[];
+   var ModularListArray=new Array(100);
+   var DoclistListArray=new Array(100);
 
   function Demo(){
-  ModuleLink = document.getElementById("ModuleLink").value='https://oh2e7m.axshare.com';
+  ModuleLink = document.getElementById("ModuleLink").value='https://alipic.lanhuapp.com/SketchCoverf0707de649e522dd7bc39b0d9df53f11';
   ModuleName = document.getElementById("ModuleName").value='一. 登录界面';
   Testpoints = document.getElementById("Testpoints").value='手机号丨获取验证码丨更换手机号丨登录';
   PictureList = document.getElementById("picturelist").value='https://alipic.lanhuapp.com/SketchCoverf0707de649e522dd7bc39b0d9df53f11;\n\
@@ -1477,64 +1538,80 @@ function empty(){
   Testpoints = document.getElementById("Testpoints").value='';
   PictureList = document.getElementById("picturelist").value='';
 }
+function empty1(){
+  ModuleLink = document.getElementById("ModuleLink_Update").value='';
+  ModuleName = document.getElementById("ModuleName_Update").value='';
+  document.getElementById("myCourse1_Update").options[0].selected=true; 
+  document.getElementById("ModuleCode11_Update").value=0;
+  Testpoints = document.getElementById("Testpoints_Update").value='';
+  PictureList = document.getElementById("picturelist_Update").value='';
+}
+function empty2(){
+  ModuleLink = document.getElementById("ModuleLink_Save").value='';
+  ModuleName = document.getElementById("ModuleName_Save").value='';
+  document.getElementById("myCourse1_Save").options[0].selected=true; 
+  document.getElementById("ModuleCode11_Save").value=0;
+  Testpoints = document.getElementById("Testpoints_Save").value='';
+  PictureList = document.getElementById("picturelist_Save").value='';
+}
 function added(){
   ModuleLink = document.getElementById("ModuleLink").value;
   ModuleName = document.getElementById("ModuleName").value;
   Testpoints = document.getElementById("Testpoints").value;
   PictureName = "carousel";
   PictureID = "image";
-  PictureList = document.getElementById("picturelist").value.split(";");
+  PictureList = document.getElementById("picturelist").value;
   TestDate ="\
-①.;\n\
- ②.;\n\
- ③.;\n\
- ④.;\n\
- ⑤.;\n\
- ⑥.;\n\
- ⑦.;\n\
- ⑧.;\n\
- ⑨.;\n\
- ⑩.;\n\
- ⑪.;\n\
- ⑫.;\n\
- ⑬.;\n\
- ⑭.;\n\
- ⑮.;\n\
- ⑯.;\n\
- ⑰.;\n\
- ⑱.;\n\
- ⑲.;\n\
- ⑳.;\n\
- ㉑.;\n\
- ㉒.;\n\
- ㉓.;\n\
- ㉔.;\n\
- ㉕.;\n\
- ㉖.;\n\
- ㉗.;\n\
- ㉘.;\n\
- ㉙.;\n\
- ㉚.;\n\
- ㉛.;\n\
- ㉜.;\n\
- ㉝.;\n\
- ㉞.;\n\
- ㉟.;\n\
- ㊱.;\n\
- ㊲.;\n\
- ㊳.;\n\
- ㊴.;\n\
- ㊵.;\n\
- ㊵.;\n\
- ㊶.;\n\
- ㊷.;\n\
- ㊸.;\n\
- ㊹.;\n\
- ㊺.;\n\
- ㊻.;\n\
- ㊼.;\n\
- ㊽.;\n\
- ㊿.; \
+①.\n\
+ ②.\n\
+ ③.\n\
+ ④.\n\
+ ⑤.\n\
+ ⑥.\n\
+ ⑦.\n\
+ ⑧.\n\
+ ⑨.\n\
+ ⑩.\n\
+ ⑪.\n\
+ ⑫.\n\
+ ⑬.\n\
+ ⑭.\n\
+ ⑮.\n\
+ ⑯.\n\
+ ⑰.\n\
+ ⑱.\n\
+ ⑲.\n\
+ ⑳.\n\
+ ㉑.\n\
+ ㉒.\n\
+ ㉓.\n\
+ ㉔.\n\
+ ㉕.\n\
+ ㉖.\n\
+ ㉗.\n\
+ ㉘.\n\
+ ㉙.\n\
+ ㉚.\n\
+ ㉛.\n\
+ ㉜.\n\
+ ㉝.\n\
+ ㉞.\n\
+ ㉟.\n\
+ ㊱.\n\
+ ㊲.\n\
+ ㊳.\n\
+ ㊴.\n\
+ ㊵.\n\
+ ㊵.\n\
+ ㊶.\n\
+ ㊷.\n\
+ ㊸.\n\
+ ㊹.\n\
+ ㊺.\n\
+ ㊻.\n\
+ ㊼.\n\
+ ㊽.\n\
+ ㊿.\
 ";
   // console.log(PictureList)
     if(ModuleLink==''){
@@ -1553,12 +1630,258 @@ function added(){
   // console.log(ModuleLink+ModuleName+Testpoints+PictureName+PictureID+PictureList+StorageID)
       alert('新增成功！')
       ModuleArry1.push(ModuleName)
-      // console.log(ModuleArry1)
+      // console.log(i)
+      // console.log(d)
+      // console.log(u)
       var _option = document.createElement("option");
       _option.value = ModuleArry1[i];
       _option.text = ModuleArry1[i];
       myCourse1.appendChild(_option);
+      var _option1 = document.createElement("option");
+      _option1.value = ModuleArry1[i];
+      _option1.text = ModuleArry1[i];
+      myCourse1_Update.appendChild(_option1);
+      var _option2 = document.createElement("option");
+      _option2.value = ModuleArry1[i];
+      _option2.text = ModuleArry1[i];
+      myCourse1_Save.appendChild(_option2);
+      isAdd = 0;
       myFunction(ModuleLink,ModuleName,Testpoints,PictureName,PictureID,PictureList,TestDate)
+    }
+}
+
+function update() {
+    var index = document.getElementById("myCourse1_Update").selectedIndex;
+    if(index==0){
+      alert('请选择修改的模块！')
+      return true;
+    }else{
+      var b = document.getElementById("ModuleCode11_Update").value;
+      var textarea = "textarea";
+      var textarea2 = textarea+(b-1);
+      TestDate = document.getElementById(textarea2).value;
+      // console.log(TestDate)
+
+      var a ="Modular";
+      var a1 ="doclist";
+      var c = a+(b-1);
+      var c1 = a1+(b-1);
+      var Modular = document.getElementById(c);
+      var doclist = document.getElementById(c1);
+      var parent = document.getElementsByClassName("ModularList")[0];
+      parent.removeChild(Modular);
+      var nod = document.getElementById('doc'); 
+      nod.removeChild(doclist);
+      d--;
+      
+      ModuleLink = document.getElementById("ModuleLink_Update").value;
+      ModuleName = document.getElementById("ModuleName_Update").value;
+      Testpoints = document.getElementById("Testpoints_Update").value;
+      PictureName = "carousel";
+      PictureID = "image";
+      PictureList = document.getElementById("picturelist_Update").value;
+      // TestDate = allArry[myCourse1_Update.selectedIndex-1][4];
+      
+      var se = document.getElementById("myCourse1_Update");
+      se.options[se.selectedIndex].value = ModuleName;
+      se.options[se.selectedIndex].text = ModuleName;
+
+      var se1 = document.getElementById("myCourse1");
+      se1.options[se.selectedIndex].value = ModuleName;
+      se1.options[se.selectedIndex].text = ModuleName;
+
+      var se2 = document.getElementById("myCourse1_Save");
+      se2.options[se.selectedIndex].value = ModuleName;
+      se2.options[se.selectedIndex].text = ModuleName;
+
+      alert('修改成功！')
+      isAdd = 1;
+      myFunction(ModuleLink,ModuleName,Testpoints,PictureName,PictureID,PictureList,TestDate)
+      i=u;
+      for (var q = 0; q < ModularListArray.length; q++) {
+        var hh = $("#"+ModularListArray[q]);
+        $("#"+ModularListArray[q]).remove();
+        $(".ModularList").append(hh);
+        var doc = $("#"+DoclistListArray[q]);
+        $("#"+DoclistListArray[q]).remove();
+        $("#doc").append(doc);
+      }
+    }
+}
+function myFunction(模块链接,模块名称,测试场景点,图片名称,图片ID,图片list,TestDate){
+    singleArry = [模块链接,模块名称,测试场景点,图片list,TestDate];
+    if(isAdd==0){
+      i=u;
+      allArry.push(singleArry);
+      // console.log(allArry)
+      u++;
+    }else if(isAdd==1){
+      i = document.getElementById("ModuleCode11_Update").value - 1;
+      allArry.splice(document.getElementById("ModuleCode11_Update").value-1,1,singleArry)
+    }
+  // for(var i=0;i<3;i++){
+     html='\
+    <!--模块名称-->\
+    <h3 id="_'+i+'">\
+      <a id="modula'+i+'"  href='+模块链接+'>\
+      '+模块名称+'\
+      </a>\
+    </h3>\
+    <!--测试点-->\
+    <h4 id="_'+i+'"> <a name="user-content-_3" href="#_3" class="headeranchor-link" aria-hidden="true"> <span class="headeranchor"> \</span> </a>\
+      测试点：'+测试场景点+'\
+    </h4>\
+    <hr />\
+    <!--轮播图-->\
+    <div class="'+图片名称+''+i+'" @mouseenter="enter" @mouseleave="leave" style="float:left;margin:12px;">\
+     <transition-group tag="ul" id="'+图片ID+''+i+'" name="image" enter-active-class="animated lightSpeedIn" leave-active-class="animated\ lightSpeedOut">\
+      <li v-for="(image,index) in img" :key="index" v-show="index === mark"> <a href="javascript:;">\
+        <img :src="image" style="border:2px outset" /> </a>\
+      </li>\
+     </transition-group>\
+     <div class="bullet" style="margin-left: 0px;margin-bottom: -5px">\
+      <span v-for="(item,index) in img.length" :class="{\'active\':index === mark}" @click="change(index)" :key="index"></span>\
+     </div>\
+     <div class="switch">\
+      <span class="prev" @click="prev">&lt;</span>\
+      <span class="next" @click="next">&gt;</span>\
+     </div>\
+    </div>\
+    <!--测试场景用例-->\
+    <textarea id="textarea'+i+'" rows="25" cols="109" style="resize:none;font-size:11pt;line-height:25px;" class="form-control" id="content">\
+ '+TestDate+'\
+ </textarea>\
+    <!--文件查看和保存-->\
+    <div align="right" style="position:relative;">\
+     <!--<input type="file" id="upload" accept="text/xml" onchange="previewText()" />\
+     <button id="save'+i+'" onclick="Preservation()">保存</button>-->\
+    </div>\
+    <hr />';
+    
+    // appendStyle()
+    // var o = document.getElementsByClassName("markdown-body")[1];
+    // // console.log(o)
+    // var div = document.createElement('div');
+    // div.id = 'Modular'+i;
+    // div.innerHTML = html; 
+    // o.appendChild(div); 
+
+    appendStyle()
+    var o = document.getElementsByClassName("markdown-body")[1];
+    var ModularList = document.getElementsByClassName("ModularList")[0];
+
+    var div = document.createElement('div');
+    div.id = 'Modular'+i;
+    div.innerHTML = html;
+
+    ModularList.appendChild(div);
+    o.appendChild(ModularList); 
+
+    myFunction1(图片名称+i,图片list.split(";"),图片ID+i,d);
+    appendDoc()
+// }
+i++;
+d++;
+// document.getElementById("ModuleCode11").value = i;
+}
+function deleteDoc(){
+    var parent = document.getElementsByClassName("ModularList")[0];
+    var nod = document.getElementById('doc'); 
+    // console.log(parent)
+    var se = document.getElementById("myCourse1");
+    var se1 = document.getElementById("myCourse1_Update");
+    var se2 = document.getElementById("myCourse1_Save");
+    // console.log(se.options.length)
+    // console.log(se.selectedIndex)
+    if(se.selectedIndex==0){
+      for (var e = 1; e < se.options.length; e++) {
+         var a ="Modular";
+         var a1 ="doclist";
+         var b = e;
+         var c = a+(b-1);
+         var c1 = a1+(b-1);
+         var Modular = document.getElementById(c);
+         // console.log(Modular)
+         var doclist = document.getElementById(c1);
+         if(Modular==null&&doclist==null){
+           continue;
+         }else{
+           parent.removeChild(Modular);
+           nod.removeChild(doclist);  
+         } 
+      }
+      se.options.length = 1;
+      se1.options.length = 1;
+      se2.options.length = 1;
+      ModuleArry1.length = 0;
+      allArry.length = 0;
+      // console.log(se)
+      // console.log(ModuleArry1)
+      i=0;
+      d=0;
+      u=0;
+    }else{
+      var a ="Modular";
+      var a1 ="doclist";
+      var b = document.getElementById("ModuleCode11").value;
+      var c = a+(b-1);
+      var c1 = a1+(b-1);
+      var Modular = document.getElementById(c);
+      // console.log(Modular)
+      var doclist = document.getElementById(c1);
+      // console.log(doclist)
+      if(Modular==null&&doclist==null){
+        alert("该模块已删除！")
+      }else{
+        parent.removeChild(Modular);
+        nod.removeChild(doclist);
+        // se.remove(se.selectedIndex);//移除选择的项
+        se.options[se.selectedIndex].style.display = "none";
+        se.options[0].selected=true;  
+        // se.options[se.selectedIndex].text = '已删除'; 
+        // se1.remove(b);//移除选择的项
+        se1.options[b].style.display = "none";
+        se1.options[0].selected=true; 
+        // se1.options[se.selectedIndex].text = '已删除'; 
+        // se1.remove(b);//移除选择的项
+        se2.options[b].style.display = "none";
+        se2.options[0].selected=true; 
+        // se1.options[se.selectedIndex].text = '已删除'; 
+        d--;
+      }
+    }
+    alert('删除成功！') 
+    document.getElementById("ModuleLink_Update").value = '';
+    document.getElementById("ModuleName_Update").value = '';
+    document.getElementById("Testpoints_Update").value = '';
+    document.getElementById("picturelist_Update").value = '';
+    document.getElementById("ModuleLink_Save").value = '';
+    document.getElementById("ModuleName_Save").value = '';
+    document.getElementById("Testpoints_Save").value = '';
+    document.getElementById("picturelist_Save").value = '';
+    document.getElementById("ModuleCode11").value = '0';
+    document.getElementById("ModuleCode11_Update").value = '0';
+    document.getElementById("ModuleCode11_Save").value = '0';
+    // var se = document.getElementById("myCourse1");
+    // se.remove(se.selectedIndex);//移除选择的项
+    // var se = document.getElementById("myCourse1");
+    // se.options.length=0;//清空所有的项
+    // document.getElementById("ModuleCode11").value=i;
+    // document.getElementById("ModuleCode22").value = i;
+}
+function Refresh() {
+    // var arr = new Array("Modular0","Modular1","Modular2","Modular3");
+    // for (var i = 0; i < arr.length; i++) {
+    // var hh = $("#"+arr[i]);
+    // $("#"+arr[i]).remove();
+    // $(".ModularList").append(hh);
+    for (var i = 0; i < ModularListArray.length; i++) {
+        var hh = $("#"+ModularListArray[i]);
+        $("#"+ModularListArray[i]).remove();
+        $(".ModularList").append(hh);
+        var doc = $("#"+DoclistListArray[i]);
+        $("#"+DoclistListArray[i]).remove();
+        $("#doc").append(doc);
     }
 }
 function sendfile() {
@@ -1585,32 +1908,46 @@ function sendfile() {
         zzexcel = XLSX.read(data, {type: 'binary'});  
         // console.log(myCourse.selectedIndex) 
         if (myCourse.selectedIndex==0) {
+          var le = document.getElementById("myCourse1").length-1;
           for (var a = 0; a < zzexcel.SheetNames.length; a++) {
-             ModuleLink = zzexcel.Sheets[zzexcel.SheetNames[a]].A1.v;
-             ModuleName = zzexcel.Sheets[zzexcel.SheetNames[a]].A2.v;
-             Testpoints = zzexcel.Sheets[zzexcel.SheetNames[a]].A3.v;
+             ModuleLink = zzexcel.Sheets[zzexcel.SheetNames[a]].A2.v;
+             ModuleName = zzexcel.Sheets[zzexcel.SheetNames[a]].A3.v;
+             Testpoints = zzexcel.Sheets[zzexcel.SheetNames[a]].A4.v;
              PictureName = "carousel";
              PictureID = "image";
-             PictureList = zzexcel.Sheets[zzexcel.SheetNames[a]].A4.v.split(";");
-             TestDate1 = zzexcel.Sheets[zzexcel.SheetNames[a]].A5.v.split(";").toString();
+             PictureList = zzexcel.Sheets[zzexcel.SheetNames[a]].A5.v;
+             re1 = new RegExp(";","g");
+             PictureList1 = PictureList.replace(re1, ";\n");
+             TestDate1 = zzexcel.Sheets[zzexcel.SheetNames[a]].A6.v.split(";").toString();
              re = new RegExp(", ","g");
              TestDate2 = TestDate1.replace(re, ";\n ");
              TestDate = TestDate2.replace(" ①", "①");
              ModuleArry1.push(ModuleName)
              var _option = document.createElement("option");
-             _option.value = ModuleArry1[a];
-             _option.text = ModuleArry1[a];
+             _option.value = ModuleArry1[a+le];
+             _option.text = ModuleArry1[a+le];
              myCourse1.appendChild(_option);
-             myFunction(ModuleLink,ModuleName,Testpoints,PictureName,PictureID,PictureList,TestDate)
+             var _option1 = document.createElement("option");
+             _option1.value = ModuleArry1[a+le];
+             _option1.text = ModuleArry1[a+le];
+             myCourse1_Update.appendChild(_option1);
+             var _option2 = document.createElement("option");
+             _option2.value = ModuleArry1[a+le];
+             _option2.text = ModuleArry1[a+le];
+             myCourse1_Save.appendChild(_option2);
+             isAdd = 0;
+             myFunction(ModuleLink,ModuleName,Testpoints,PictureName,PictureID,PictureList1,TestDate)
           }
         }else{
-             ModuleLink = zzexcel.Sheets[zzexcel.SheetNames[myCourse.selectedIndex-1]].A1.v;
-             ModuleName = zzexcel.Sheets[zzexcel.SheetNames[myCourse.selectedIndex-1]].A2.v;
-             Testpoints = zzexcel.Sheets[zzexcel.SheetNames[myCourse.selectedIndex-1]].A3.v;
+             ModuleLink = zzexcel.Sheets[zzexcel.SheetNames[myCourse.selectedIndex-1]].A2.v;
+             ModuleName = zzexcel.Sheets[zzexcel.SheetNames[myCourse.selectedIndex-1]].A3.v;
+             Testpoints = zzexcel.Sheets[zzexcel.SheetNames[myCourse.selectedIndex-1]].A4.v;
              PictureName = "carousel";
              PictureID = "image";
-             PictureList = zzexcel.Sheets[zzexcel.SheetNames[myCourse.selectedIndex-1]].A4.v.split(";");
-             TestDate1 = zzexcel.Sheets[zzexcel.SheetNames[myCourse.selectedIndex-1]].A5.v.split(";").toString();
+             PictureList = zzexcel.Sheets[zzexcel.SheetNames[myCourse.selectedIndex-1]].A5.v;
+             re1 = new RegExp(";","g");
+             PictureList1 = PictureList.replace(re1, ";\n");
+             TestDate1 = zzexcel.Sheets[zzexcel.SheetNames[myCourse.selectedIndex-1]].A6.v.split(";").toString();
              re = new RegExp(", ","g");
              TestDate2 = TestDate1.replace(re, ";\n ");
              TestDate = TestDate2.replace(" ①", "①");
@@ -1619,7 +1956,16 @@ function sendfile() {
              _option.value = ModuleArry1[i];
              _option.text = ModuleArry1[i];
              myCourse1.appendChild(_option);
-             myFunction(ModuleLink,ModuleName,Testpoints,PictureName,PictureID,PictureList,TestDate)
+             var _option1 = document.createElement("option");
+             _option1.value = ModuleArry1[i];
+             _option1.text = ModuleArry1[i];
+             myCourse1_Update.appendChild(_option1);
+             var _option2 = document.createElement("option");
+             _option2.value = ModuleArry1[i];
+             _option2.text = ModuleArry1[i];
+             myCourse1_Save.appendChild(_option2);
+             isAdd = 0;
+             myFunction(ModuleLink,ModuleName,Testpoints,PictureName,PictureID,PictureList1,TestDate)
           }
         }
         alert('读取成功！') 
@@ -1652,64 +1998,40 @@ function getCourse(){
 function setCourse(){ 
    document.getElementById("ModuleName1").value = myCourse.selectedIndex;
    document.getElementById("ModuleCode11").value = myCourse1.selectedIndex;
+   document.getElementById("ModuleCode11_Update").value = myCourse1_Update.selectedIndex;
+   document.getElementById("ModuleCode11_Save").value = myCourse1_Save.selectedIndex;
    // console.log(myCourse.selectedIndex) 
    // console.log(myCourse.value) 
 }
-function myFunction(模块链接,模块名称,测试场景点,图片名称,图片ID,图片list,TestDate){
-  // for(var i=0;i<3;i++){
-     html='\
-    <!--模块名称-->\
-    <h3 id="_'+i+'">\
-      <a id="modula'+i+'"  href='+模块链接+'>\
-      '+模块名称+'\
-      </a>\
-    </h3>\
-    <!--测试点-->\
-    <h4 id="_'+i+'"> <a name="user-content-_3" href="#_3" class="headeranchor-link" aria-hidden="true"> <span class="headeranchor"> \</span> </a>\
-      测试点：'+测试场景点+'\
-    </h4>\
-    <hr />\
-    <!--轮播图-->\
-    <div class="'+图片名称+''+i+'" @mouseenter="enter" @mouseleave="leave" style="float:left;margin:12px;">\
-     <transition-group tag="ul" id="'+图片ID+''+i+'" name="image" enter-active-class="animated lightSpeedIn" leave-active-class="animated\ lightSpeedOut">\
-      <li v-for="(image,index) in img" :key="index" v-show="index === mark"> <a href="javascript:;">\
-        <img :src="image" style="border:2px outset" /> </a>\
-      </li>\
-     </transition-group>\
-     <div class="bullet" style="margin-left: 0px">\
-      <span v-for="(item,index) in img.length" :class="{\'active\':index === mark}" @click="change(index)" :key="index"></span>\
-     </div>\
-     <div class="switch">\
-      <span class="prev" @click="prev">&lt;</span>\
-      <span class="next" @click="next">&gt;</span>\
-     </div>\
-    </div>\
-    <!--测试场景用例-->\
-    <textarea id="textarea'+i+'" rows="25" cols="109" style="resize:none;font-size:11pt;line-height:25px;" class="form-control" id="content">\
- '+TestDate+'\
- </textarea>\
-    <!--文件查看和保存-->\
-    <div align="right" style="position:relative;">\
-     <!--<input type="file" id="upload" accept="text/xml" onchange="previewText()" />\
-     <button id="save'+i+'" onclick="Preservation()">保存</button>-->\
-    </div>\
-    <hr />';
-    appendStyle()
-    var o = document.getElementsByClassName("markdown-body")[1];
-    // console.log(o)
-    var div = document.createElement('div');
-    div.id = 'Modular'+i;
-    div.innerHTML = html; 
-    o.appendChild(div); 
-    myFunction1(图片名称+i,图片list,图片ID+i,d);
-    appendDoc()
-// }
-i++;
-d++;
-// document.getElementById("ModuleCode11").value=i;
-document.getElementById("ModuleCode22").value=i;
+function setCourse_update(){ 
+  document.getElementById("ModuleCode11_Update").value = myCourse1_Update.selectedIndex;
+  if(myCourse1_Update.selectedIndex!=0){
+    document.getElementById("ModuleLink_Update").value = allArry[myCourse1_Update.selectedIndex-1][0];
+    document.getElementById("ModuleName_Update").value = allArry[myCourse1_Update.selectedIndex-1][1];
+    document.getElementById("Testpoints_Update").value = allArry[myCourse1_Update.selectedIndex-1][2];
+    document.getElementById("picturelist_Update").value = allArry[myCourse1_Update.selectedIndex-1][3];
+  }else{
+    document.getElementById("ModuleLink_Update").value = '';
+    document.getElementById("ModuleName_Update").value = '';
+    document.getElementById("Testpoints_Update").value = '';
+    document.getElementById("picturelist_Update").value = '';
+  }
 }
-function Preservation(){
+function setCourse_Save(){ 
+  document.getElementById("ModuleCode11_Save").value = myCourse1_Save.selectedIndex;
+  if(myCourse1_Save.selectedIndex!=0){
+    document.getElementById("ModuleLink_Save").value = allArry[myCourse1_Save.selectedIndex-1][0];
+    document.getElementById("ModuleName_Save").value = allArry[myCourse1_Save.selectedIndex-1][1];
+    document.getElementById("Testpoints_Save").value = allArry[myCourse1_Save.selectedIndex-1][2];
+    document.getElementById("picturelist_Save").value = allArry[myCourse1_Save.selectedIndex-1][3];
+  }else{
+    document.getElementById("ModuleLink_Save").value = '';
+    document.getElementById("ModuleName_Save").value = '';
+    document.getElementById("Testpoints_Save").value = '';
+    document.getElementById("picturelist_Save").value = '';
+  }
+}
+function Preservation1(){
   var a ="save";
   var a1 ="textarea";
   var b =document.getElementById("ModuleCode22").value;
@@ -1754,8 +2076,9 @@ function saveTextAsFile(c) {
   varname = modula;
   name = varname.replace(/(^\s*)|(\s*$)/g,'');
   // console.log(name)
+  // data = "\ufeff" + savedata;
   data = "\ufeff" + savedata;
-  var textFileAsBlob = new Blob([ data ], { type: 'text/csv,charset=UTF-8' });
+  var textFileAsBlob = new Blob([data],{ type: 'text/csv,charset=UTF-8' });
   var fileNameToSaveAs = name+".xls";
 
   var downloadLink = document.createElement("a");
@@ -1777,6 +2100,120 @@ function destroyClickedElement(event) {
   // remove the link from the DOM
   document.body.removeChild(event.target);
 }
+
+function workbook2blob(workbook) {
+        // 生成excel的配置项
+        var wopts = {
+          // 要生成的文件类型
+          bookType: "xlsx",
+          // // 是否生成Shared String Table，官方解释是，如果开启生成速度会下降，但在低版本IOS设备上有更好的兼容性
+          bookSST: false,
+          type: "binary"
+        };
+        var wbout = XLSX.write(workbook, wopts);
+        // 将字符串转ArrayBuffer
+        function s2ab(s) {
+          var buf = new ArrayBuffer(s.length);
+          var view = new Uint8Array(buf);
+          for (var i = 0; i != s.length; ++i) view[i] = s.charCodeAt(i) & 0xff;
+          return buf;
+        }
+        var blob = new Blob([s2ab(wbout)], {
+          type: "application/octet-stream"
+        });
+        return blob;
+}
+function openDownloadDialog(blob, fileName) {
+        if (typeof blob == "object" && blob instanceof Blob) {
+          blob = URL.createObjectURL(blob); // 创建blob地址
+        }
+        var aLink = document.createElement("a");
+        aLink.href = blob;
+        // HTML5新增的属性，指定保存文件名，可以不要后缀，注意，有时候 file:///模式下不会生效
+        aLink.download = fileName || "";
+        var event;
+        if (window.MouseEvent) event = new MouseEvent("click");
+        //   移动端
+        else {
+          event = document.createEvent("MouseEvents");
+          event.initMouseEvent( "click", true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null );
+        }
+        aLink.dispatchEvent(event);
+}
+function Preservation(){
+  var se = document.getElementById("myCourse1_Save");
+  var sheetdatalist=[];
+  var wb = XLSX.utils.book_new();
+  if(se.selectedIndex==0){
+    for (var t = 0; t < se.length-1; t++) {
+      var ModuleLink = allArry[t][0];
+      var ModuleName = allArry[t][1];
+      var Testpoints = allArry[t][2];
+      var PictureList1 = allArry[t][3];
+      re = new RegExp(";\n","g");
+      PictureList = PictureList1.replace(re, ";");
+      var a ="textarea";
+      var c = a+t;
+      try{
+        textToWrite1 = document.getElementById(c).value;
+        re2 = new RegExp(";\n","g");
+        textToWrite = textToWrite1.replace(re2, ";");
+        let sheetdata = [
+          // { q: "\ufeff" + ModuleLink},
+          // { q: "\ufeff" + ModuleName},
+          // { q: "\ufeff" + Testpoints},
+          // { q: "\ufeff" + PictureList},
+          // { q: "\ufeff" + textToWrite}
+          { q: ModuleLink},
+          { q: ModuleName},
+          { q: Testpoints},
+          { q: PictureList},
+          { q: textToWrite}
+        ];
+        sheet = XLSX.utils.json_to_sheet(sheetdata);
+        sheetdatalist.push(sheet)
+        try{
+          XLSX.utils.book_append_sheet(wb, sheetdatalist[t], ModuleName);
+        }catch(err){
+          alert("【"+ModuleName+"】模块重复 ==>> 已修改为【"+ModuleName+"("+t+")】");
+          XLSX.utils.book_append_sheet(wb, sheetdatalist[t], ModuleName+"("+t+")");
+        }
+      }catch(err){
+        sheetdatalist.push("已删除");
+        continue;
+      }
+    }
+    // console.log(sheetdatalist)
+    workbookBlob = workbook2blob(wb);
+    openDownloadDialog(workbookBlob, "测试场景点.xlsx");  
+  }else{
+    var b =document.getElementById("ModuleCode11_Save").value;
+    ModuleLink = document.getElementById("ModuleLink_Save").value;
+    ModuleName = document.getElementById("ModuleName_Save").value;
+    Testpoints = document.getElementById("Testpoints_Save").value;
+    PictureList1 = document.getElementById("picturelist_Save").value;
+    re = new RegExp(";\n","g");
+    PictureList = PictureList1.replace(re, ";");
+    var a ="textarea";
+    var c =a+(b-1);
+    textToWrite1 = document.getElementById(c).value;
+    re2 = new RegExp(";\n","g");
+    textToWrite = textToWrite1.replace(re2, ";");
+    let sheet1data = [
+      { q: ModuleLink},
+      { q: ModuleName},
+      { q: Testpoints},
+      { q: PictureList},
+      { q: textToWrite}
+    ];
+    var sheet1 = XLSX.utils.json_to_sheet(sheet1data);
+    var wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, sheet1, ModuleName);
+    const workbookBlob = workbook2blob(wb);
+    openDownloadDialog(workbookBlob, ModuleName+".xlsx");
+  }
+}
+
 function appendDoc(){
   var nod = document.getElementById('doc'); 
     str = '\
@@ -1795,63 +2232,6 @@ function appendDoc(){
     // window.scrollTo(document.body.scrollHeight,0);
     //滑动至底部
     window.scrollTo(0,document.body.scrollHeight);
-}
-function deleteDoc(){
-    var parent = document.getElementsByClassName("markdown-body")[1];
-    var nod = document.getElementById('doc'); 
-    // console.log(parent)
-    var se = document.getElementById("myCourse1");
-    // console.log(se.options.length)
-    // console.log(se.selectedIndex)
-    if(se.selectedIndex==0){
-      for (var e = 1; e < se.options.length; e++) {
-         var a ="Modular";
-         var a1 ="doclist";
-         var b = e;
-         var c = a+(b-1);
-         var c1 = a1+(b-1);
-         var Modular = document.getElementById(c);
-         // console.log(Modular)
-         var doclist = document.getElementById(c1);
-         if(Modular==null&&doclist==null){
-           continue;
-         }else{
-           parent.removeChild(Modular);
-           nod.removeChild(doclist);  
-         } 
-      }
-      se.options.length = 1;
-      ModuleArry1.length = 0;
-      // console.log(se)
-      // console.log(ModuleArry1)
-      i=0;
-      d=0;
-    }else{
-      var a ="Modular";
-      var a1 ="doclist";
-      var b = document.getElementById("ModuleCode11").value;
-      var c = a+(b-1);
-      var c1 = a1+(b-1);
-      var Modular = document.getElementById(c);
-      // console.log(Modular)
-      var doclist = document.getElementById(c1);
-      // console.log(doclist)
-      if(Modular==null&&doclist==null){
-        alert("该模块已删除！")
-      }else{
-        parent.removeChild(Modular);
-        nod.removeChild(doclist);
-        // se.remove(se.selectedIndex);//移除选择的项
-        se.options[se.selectedIndex].text = '已删除'; 
-        d--;
-      }
-    }
-    // var se = document.getElementById("myCourse1");
-    // se.remove(se.selectedIndex);//移除选择的项
-    // var se = document.getElementById("myCourse1");
-    // se.options.length=0;//清空所有的项
-    // document.getElementById("ModuleCode11").value=i;
-    document.getElementById("ModuleCode22").value = d;
 }
 function appendStyle(){
   var nod = document.getElementById('style'); 
@@ -1933,6 +2313,7 @@ function myFunction1(carousel,图片list,image,bullet){
     myFunction2(image,bullet); 
  }     
 function myFunction2(image,bullet){
+      // console.log(bullet)
       var objul= document.getElementById(image)
       var lis = objul.getElementsByTagName("li").length;
       // console.log(lis);
@@ -1940,7 +2321,11 @@ function myFunction2(image,bullet){
       // console.log(b);
       var tag = document.getElementsByClassName("bullet")[bullet]
       // console.log(tag)
-      tag.style['margin-left'] = b +"px";
+      if(lis<=Math.round(348/25)){
+        tag.style['margin-left'] = b +"px";
+      }else{
+        tag.style['margin-left'] = "6.5px";
+      }
 }
 //预览文字
 function previewText() {
@@ -1967,8 +2352,13 @@ function previewText() {
           }
         }
         // alert(pointsTxt)
-        // console.log(pointsTxt);
+        // console.log(pointsTxt);a
       }
+for(var a=0;a<ModularListArray.length;a++){
+  ModularListArray[a] = 'Modular'+a;
+  DoclistListArray[a] = 'doclist'+a;
+}
+// console.log(ModularListArray)
 </script> 
 <script type="text/javascript">
   document.oncontextmenu=function(){return false;}
