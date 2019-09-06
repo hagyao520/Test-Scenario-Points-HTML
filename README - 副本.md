@@ -29,6 +29,7 @@
  ---
 ### 使用说明
 #### 一、新增模块：  
+![](https://testerhome.com/uploads/photo/2019/37e49dbf-9945-4f87-9a8b-54525ee66ec5.gif!large)
 ![](https://testerhome.com/uploads/photo/2019/fb944cfb-e701-4f3c-9cf0-dbf965e8a7f1.gif!large)
  1. 点击新增模块按钮，输入模块跳转链接，一般对应产品原型的地址，例如：【 https://www.axure.com 】 
  3. 输入测试场景点，例如：【手机号丨获取验证码丨更换手机号丨登录】
@@ -37,24 +38,25 @@
  - PS：编辑测试场景点时，没一行需要以【；】结尾，最后一行需要加空格【； 】  
 
  #### 二、修改模块：
-![](https://testerhome.com/uploads/photo/2019/42bb426e-eca7-4440-a273-10ba4dd33119.gif!large)
+![](https://testerhome.com/uploads/photo/2019/38c69298-b6a7-4480-8959-b0400339d217.gif!large)
   1. 点击修改模块按钮，选择要修改的模块，例如：【一. 登录界面】
   2. 输入新的模块名称，图片地址等模块信息
   3.点击确认按钮，即可修改模块成功，修改成功后页面会新的模块内容
 
  #### 三、删除模块：
-![](https://images.gitee.com/uploads/images/2019/0808/154356_ea10dfac_1325509.gif)
+
+![](https://testerhome.com/uploads/photo/2019/7b3dd985-11ad-4692-a836-3fe0ee9c7a71.gif!large)
   1. 点击删除模块按钮，选择要删除的模块，例如：【全部】或【XXX模块】
   2. 点击确认按钮，即可删除模块成功，删除后页面移除该模块
 
 #### 四、读取模块：
-![](https://images.gitee.com/uploads/images/2019/0808/154355_312597f0_1325509.gif)
+![](https://testerhome.com/uploads/photo/2019/09937a57-9613-4300-8d49-615069e8e108.gif!large)
   1. 点击读取模块按钮，再点击选择文件按钮，选择要读取的Excel文件，例如：【测试场景点.xlsx】
   2. 读取成功后会自动获取所有模块，选择要读取的全部或单个模块，例如：【全部】或【一. 登录界面】
   3. 点击确认按钮，即可读取模块成功，读取成功后页面会自动生成该模块内容
 
 #### 五、保存模块：
-![](https://testerhome.com/uploads/photo/2019/da6b4a14-b9a1-4c20-940f-c70804b8bf98.gif!large)
+![](https://testerhome.com/uploads/photo/2019/8271f0af-e136-4f3d-b7ea-103a615a9701.gif!large)
   1. 点击保存模块按钮，选择需要保存的模块，例如：【全部】或【一. 登录界面】
   2. 点击确认按钮，弹出下载提示，即可保存模块成功，自动保存成Excel文件
  - PS：保存的模块名称最好不要重复，否则生成的Excel工作表名为xxx(1)
